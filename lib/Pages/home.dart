@@ -41,80 +41,84 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 40,),
           _recommendationDiet(),
           const SizedBox(height: 40,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Text("Verdical List",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  //color: Colors.black
-                ),
-                ),
-              ),
-              const SizedBox(height: 15,),
-              ListView.separated(
-                itemCount: diets.length,
-                shrinkWrap: true,
-                separatorBuilder: (context, index) => const SizedBox(height: 25,),
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20
-                ),
-                itemBuilder: (context, index) {
-                  return Container(
-                    //color: Colors.blueAccent,
-                    height: 115,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SvgPicture.asset(diets[index].iconPath,
-                        width: 65,
-                        height: 65,),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              diets[index].name,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                  color: Colors.black
-                              ),),
-
-                            Text(diets[index].duration + " | " + diets[index].calories + " | " + diets[index].level,
-                              style: TextStyle(
-                                color: Colors.brown,
-                              ),),
-                          ],
-                        ),
-                        SvgPicture.asset('assets/icons/share-variant.svg'),
-                      ],
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: diets[index].viewIsSelected ? [
-                        BoxShadow(
-                            color: Color(0xff1D1617).withOpacity(0.07),
-                            offset: Offset(0, 10),
-                            blurRadius: 40,
-                            spreadRadius: 0
-                        )
-                      ] : [],
-                    ),
-                  );
-                },
-              )
-            ],
-          ),
+          _verticalList(),
           SizedBox(height: 40,),
         ],
       ),
     );
+  }
+
+  Column _verticalList() {
+    return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text("Verdical List",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                //color: Colors.black
+              ),
+              ),
+            ),
+            const SizedBox(height: 15,),
+            ListView.separated(
+              itemCount: diets.length,
+              shrinkWrap: true,
+              separatorBuilder: (context, index) => const SizedBox(height: 25,),
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20
+              ),
+              itemBuilder: (context, index) {
+                return Container(
+                  //color: Colors.blueAccent,
+                  height: 115,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SvgPicture.asset(diets[index].iconPath,
+                      width: 65,
+                      height: 65,),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            diets[index].name,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Colors.black
+                            ),),
+
+                          Text(diets[index].duration + " | " + diets[index].calories + " | " + diets[index].level,
+                            style: TextStyle(
+                              color: Colors.brown,
+                            ),),
+                        ],
+                      ),
+                      SvgPicture.asset('assets/icons/share-variant.svg'),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: diets[index].viewIsSelected ? [
+                      BoxShadow(
+                          color: Color(0xff1D1617).withOpacity(0.07),
+                          offset: Offset(0, 10),
+                          blurRadius: 40,
+                          spreadRadius: 0
+                      )
+                    ] : [],
+                  ),
+                );
+              },
+            )
+          ],
+        );
   }
 
   Column _recommendationDiet() {
